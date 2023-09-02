@@ -1,1 +1,0 @@
-const Teacher = require('../models/teacherModel')
