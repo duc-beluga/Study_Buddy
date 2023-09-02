@@ -54,9 +54,10 @@ const getUser = async (req, res, next) => {
 const createUser = async (req, res, next) => {
   try {
     console.log('-------------------------ENTERING createUser middleware-----------------------------');
-    const { firstName, lastName, email, phoneNumber, password, profilePicture, accountType } =
+    const { displayName, email, phoneNumber, profilePicture, school, year, level, zipCode, subject, accountType } =
       req.body;
-    if (!firstName || !lastName || !email || !phoneNumber || !password || !accountType) {
+
+    if (!displayName || !email || !phoneNumber || !school || !year || !level || !zipCode || !subject || !accountType) {
       res.status(400).send("Missing information");
       // throw new Error("All fields are mandatory!");
     }
@@ -71,7 +72,7 @@ const createUser = async (req, res, next) => {
 
   catch (error) {
     return next({
-      log: 'Express error handler caught createUser middleware error',
+      log: `Express error handler caught createUser middleware error ${error}`,
       status: 500,
       message: { err: error },
     })
@@ -107,9 +108,9 @@ const deleteUser = asyncHandler(async (req, res) => {
 const updateUser = async (req, res, next) => {
   try {
     console.log('-------------------------ENTERING updateUser middleware-----------------------------');
-    const { firstName, lastName, email, phoneNumber, password, profilePicture, accountType } =
+    const { displayName, email, phoneNumber, profilePicture, school, year, level, zipCode, subject, accountType } =
       req.body;
-    if (!firstName || !lastName || !email || !phoneNumber || !password || !accountType) {
+    if (!displayName || !email || !phoneNumber || !school || !year || !level || !zipCode || !subject || !accountType) {
       res.status(400).send("All fields mandatory");
     }
     const user = await Users.findById(req.params.id);

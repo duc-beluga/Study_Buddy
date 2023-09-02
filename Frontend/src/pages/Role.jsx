@@ -16,14 +16,14 @@ const Role = () => {
         <Link
           to="/signup"
           className="bg-blue-500 rounded-md shadow-lg p-2 text-white mt-3 text-xl"
-          onClick={() => handleRoleSelection(0)} // Assuming 0 represents "Student"
+          onClick={() => handleRoleSelection(1)} // Assuming 1 represents "Student"
         >
           Student
         </Link>
         <Link
           to="/signup"
           className="bg-blue-500 rounded-md shadow-lg p-2 text-white mt-3 text-xl"
-          onClick={() => handleRoleSelection(1)} // Assuming 1 represents "Tutor"
+          onClick={() => handleRoleSelection(2)} // Assuming 2 represents "Tutor"
         >
           Tutor
         </Link>

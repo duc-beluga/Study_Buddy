@@ -2,11 +2,7 @@ const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema(
   {
-    firstName: {
-      type: String,
-      required: true,
-    },
-    lastName: {
+    displayName: {
       type: String,
       required: true,
     },
@@ -19,11 +15,27 @@ const userSchema = mongoose.Schema(
       type: Number,
       requred: true,
     },
-    password: {
-      type: String,
-      required: true,
-    },
     profilePicture: {
+      type: String,
+      required: false,
+    },
+    school: {
+      type: String,
+      required: false,
+    },
+    level: {
+      type: String,
+      required: false,
+    },
+    year: {
+      type: String,
+      required: false,
+    },
+    zipCode: {
+      type: Number,
+      required: false,
+    },
+    subject: {
       type: String,
       required: false,
     },

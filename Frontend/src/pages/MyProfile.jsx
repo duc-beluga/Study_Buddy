@@ -2,21 +2,23 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { AuthContext } from "../context/AuthContext";
 import { RoleContext } from "../context/RoleContext";
+import axios from "axios";
 
 const MyProfile = () => {
   const currentUser = useContext(AuthContext);
   const { role } = useContext(RoleContext);
 
   const [userInfo, setUserInfo] = useState({
-    displayName: "",
-    phoneNumber: "",
-    email: "",
-    school: "",
-    level: "",
-    year: "",
-    zipCode: "",
-    subject: "",
-    accountType: "",
+    displayName: "", //
+    phoneNumber: "", //
+    profilePicture: "", //
+    email: "", //
+    school: "", //Number
+    level: "", //
+    year: "", //
+    zipCode: "", //
+    subject: "", //
+    accountType: "", //Number
   });
 
   useEffect(() => {
@@ -25,13 +27,21 @@ const MyProfile = () => {
       displayName: currentUser.displayName,
       email: currentUser.email,
       accountType: role,
+      profilePicture: currentUser.photoURL,
     }));
   }, []);
 
   console.log(currentUser.displayName);
   console.log(role);
-  const handleProfileSubmit = (e) => {
+  const handleProfileSubmit = async (e) => {
     e.preventDefault();
+    try {
+      axios
+        .post("http://localhost:5001/api/users", userInfo)
+        .then((res) => console.log(res));
+    } catch (e) {
+      console.log(e.message);
+    }
     console.log(userInfo);
     // console.log(e.target[0].value);
     // console.log(e.target[1].value);

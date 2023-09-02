@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const errorHandler = require("./middleware/errorHandler");
 const connectDB = require("./config/dbConnection");
 const port = process.env.PORT || 5001;
@@ -7,6 +8,7 @@ connectDB();
 
 const app = express();
 // built_in parser
+app.use(cors())
 app.use(express.json());
 
 // route a given path string with its handler
