@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div className="">
-      {/* <Navbar />
+      <Navbar />
       <div className="flex flex-col justify-center items-center">
         <div className="font-semibold text-2xl mt-8 p-2">
           Welcome to StudyBuddy
@@ -30,8 +30,7 @@ function App() {
             Look at tutors or students near you.
           </p>
         </div>
-      </div> */}
-      <MyProfile />
+      </div>
     </div>
   );
 }
