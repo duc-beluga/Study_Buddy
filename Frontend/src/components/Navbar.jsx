@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <div className="flex justify-between m-6 mb-0  text-sm">
       <div className="grid grid-cols-3 divide-x-2 place-items-center">
-        <Link to="/" className="p-2 font-bold">
+        <Link to="/home" className="p-2 font-bold">
           StudyBuddy
         </Link>
         <Link to="/profile" className="p-2 pl-4">
@@ -15,7 +15,7 @@ const Navbar = () => {
           Connect Me
         </Link>
       </div>
-      <div>
+      <div className="pt-2">
         <a href="#" className="p-2">
           Sign Out
         </a>

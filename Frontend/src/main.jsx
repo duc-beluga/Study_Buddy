@@ -3,11 +3,13 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import MyProfile from "./pages/MyProfile.jsx";
 import ConnectMe from "./pages/ConnectMe.jsx";
-
+import HomePage from "./pages/HomePage.jsx";
+import Role from "./pages/Role.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
-  { path: "/", element: <App /> },
+  { path: "/", element: <Role /> },
+  { path: "/home", element: <HomePage /> },
   { path: "/profile", element: <MyProfile /> },
   { path: "/connect", element: <ConnectMe /> },
 ]);
