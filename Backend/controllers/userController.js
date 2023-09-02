@@ -6,7 +6,7 @@ const Users = require("../models/userModel");
 
 // @desc Get all users
 //route GET /api/userss
-const getUsers = async (req, res) => {
+const getUsers = async (req, res, next) => {
   try {
     console.log('-------------------------ENTERING getUsers middleware-----------------------------');
     const users = await Users.find();
@@ -17,46 +17,47 @@ const getUsers = async (req, res) => {
     return next({
       log: 'Express error handler caught getUsers middleware error',
       status: 500,
-      message: { err: err },
+      message: { err: error },
     }
     )
   }
 };
 
-// // @desc get a users
-// // route GET /api/userss/:id
-// const getUser = asyncHandler(async (req, res) => {
-//   try{
-//     console.log('-------------------------ENTERING getUsers middleware-----------------------------');
-//     const users_id = req.params.id;
-//     const users = await Users.findById(users_id);
-//     if (!users) {
-//       res.status(404);
-//       throw new Error("users not found");
-//     }
-//     res.status(200).json(users);
-//     return next();
-//   }
-//   catch(error){
-//     return next({
-//       log: 'Express error handler caught getUser middleware error',
-//       status: 500,
-//       message: { err: err },
-//     }
-//     )
-//   }
+// @desc get a users
+// route GET /api/userss/:id
+const getUser = async (req, res, next) => {
+  try{
+    console.log('-------------------------ENTERING getUsers middleware-----------------------------');
+    const users_id = req.params.id;
+    const user = await Users.findById(users_id);
+    if (!user) {
+      res.status(404).send("User not found");
+    }
+    else{
+      res.status(200).json(user);
+    }
+    return next();
+  }
+  catch(error){
+    return next({
+      log: 'Express error handler caught getUser middleware error',
+      status: 500,
+      message: { err: error },
+    }
+    )
+  }
 
-// });
+};
 
 // @desc create a users
 //route POST /api/users
-const createUser = async (req, res) => {
+const createUser = async (req, res, next) => {
   try {
     console.log('-------------------------ENTERING createUser middleware-----------------------------');
     const { firstName, lastName, email, phoneNumber, password, profilePicture, accountType } =
       req.body;
     if (!firstName || !lastName || !email || !phoneNumber || !password || !accountType) {
-      res.statsu(400).send("Missing information");
+      res.status(400).send("Missing information");
       // throw new Error("All fields are mandatory!");
     }
     const user = await Users.create(req.body);
@@ -72,7 +73,7 @@ const createUser = async (req, res) => {
     return next({
       log: 'Express error handler caught createUser middleware error',
       status: 500,
-      message: { err: err },
+      message: { err: error},
     })
   }
 };
@@ -92,7 +93,7 @@ const createUser = async (req, res) => {
 // });
 
 // // @desc update a users
-// //route UPDATE /api/userss/:id
+// //route UPDATE /api/users/:id
 // const updateUser = asyncHandler(async (req, res) => {
 //   console.log('-------------------------ENTERING getUsers middleware-----------------------------');
 //   const { firstName, lastName, email, phoneNumber, password, profilePicture } =
@@ -117,7 +118,7 @@ const createUser = async (req, res) => {
 module.exports = {
   getUsers,
   createUser,
-  // getUser,
+  getUser,
   // deleteUser,
   // updateUser,
 };

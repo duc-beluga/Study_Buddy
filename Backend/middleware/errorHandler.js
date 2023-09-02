@@ -49,6 +49,7 @@ const errorHandler = (err, req, res, next) => {
   //     });
   //     break;
   // }
+  
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
     status: 500,
