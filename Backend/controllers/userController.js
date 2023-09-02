@@ -26,19 +26,19 @@ const getUsers = async (req, res, next) => {
 // @desc get a users
 // route GET /api/userss/:id
 const getUser = async (req, res, next) => {
-  try{
+  try {
     console.log('-------------------------ENTERING getUser middleware-----------------------------');
     const users_id = req.params.id;
     const user = await Users.findById(users_id);
     if (!user) {
       res.status(404).send("User not found");
     }
-    else{
+    else {
       res.status(200).json(user);
     }
     return next();
   }
-  catch(error){
+  catch (error) {
     return next({
       log: 'Express error handler caught getUser middleware error',
       status: 500,
@@ -73,7 +73,7 @@ const createUser = async (req, res, next) => {
     return next({
       log: 'Express error handler caught createUser middleware error',
       status: 500,
-      message: { err: error},
+      message: { err: error },
     })
   }
 };
@@ -92,33 +92,40 @@ const createUser = async (req, res, next) => {
 //   res.status(200).json(users);
 // });
 
-// // @desc update a users
-// //route UPDATE /api/users/:id
-// const updateUser = asyncHandler(async (req, res) => {
-//   console.log('-------------------------ENTERING getUsers middleware-----------------------------');
-//   const { firstName, lastName, email, phoneNumber, password, profilePicture } =
-//     req.body;
-//   if (!firstName || !lastName || !email || !phoneNumber || !password) {
-//     res.status(400);
-//     throw new Error("All fields are mandatory!");
-//   }
-//   const user = await Users.findById(req.params.id);
-//   if (!users) {
-//     res.status(404);
-//     throw new Error("users not found");
-//   }
-//   const updatedUser = await Users.findByIdAndUpdate(
-//     req.params.id,
-//     req.body,
-//     { new: true }
-//   );
-//   res.status(200).json(updatedUser);
-// });
+// @desc update a users
+//route UPDATE /api/users/:id
+const updateUser = async (req, res, next) => {
+  try {
+    console.log('-------------------------ENTERING updateUser middleware-----------------------------');
+    const { firstName, lastName, email, phoneNumber, password, profilePicture, accountType } =
+      req.body;
+    if (!firstName || !lastName || !email || !phoneNumber || !password || !accountType) {
+      res.status(400).send("All fields mandatory");
+    }
+    const user = await Users.findById(req.params.id);
+    if (!user) {
+      res.status(404).send("User not found");
+    }
+    const updatedUser = await Users.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
+    res.status(200).json(updatedUser);
+    return next();
+  }
+  catch(error){
+    return next({
+      log: 'Express error handler caught updateUser middleware error',
+      status: 500,
+      message: { err: error },
+    })
+  }
+};
 
 module.exports = {
   getUsers,
   createUser,
   getUser,
   // deleteUser,
-  // updateUser,
+  updateUser,
 };
