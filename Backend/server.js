@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 
 // route a given path string with its handler
-app.use("/api/students", require("./routes/studentRoutes"));
+app.use("/api/users", require("./routes/userRoutes"));
 
 // error handler
 app.use(errorHandler);
