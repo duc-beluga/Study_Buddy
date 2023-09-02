@@ -1,20 +1,21 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <div className="flex justify-between m-6 mb-0  text-sm">
       <div className="grid grid-cols-3 divide-x-2 place-items-center">
-        <a href="#" className="p-2 font-bold">
+        <Link to="/home" className="p-2 font-bold">
           StudyBuddy
-        </a>
-        <a href="#" className="p-2 pl-4">
+        </Link>
+        <Link to="/profile" className="p-2 pl-4">
           My Profile
-        </a>
-        <a href="#" className="p-2 pl-4">
+        </Link>
+        <Link to="/connect" className="p-2 pl-4">
           Connect Me
-        </a>
+        </Link>
       </div>
-      <div>
+      <div className="pt-2">
         <a href="#" className="p-2">
           Sign Out
         </a>
