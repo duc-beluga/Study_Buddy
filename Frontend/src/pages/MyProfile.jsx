@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 const MyProfile = () => {
   return (
     <div>
-      <Navbar />
+      <Navbar active="profile" />
       <div className="m-7 mt-4 border-slate-400  border-2 rounded-lg shadow-lg flex flex-col">
         <div className="m-5">STUDENT ACCOUNT</div>
         <div className="flex flex-grow">

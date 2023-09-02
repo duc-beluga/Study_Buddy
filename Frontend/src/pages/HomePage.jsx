@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Navbar from "../components/Navbar";
+import { AuthContext } from "../context/AuthContext";
 
 const HomePage = () => {
+  const currentUser = useContext(AuthContext);
+
+  console.log(currentUser);
+  useEffect(() => {});
   return (
     <div>
-      <Navbar />
+      <Navbar active="home" />
       <div className="flex flex-col justify-center items-center">
         <div className="font-semibold text-2xl mt-8 p-2">
           Welcome to StudyBuddy

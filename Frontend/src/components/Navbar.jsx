@@ -1,24 +1,46 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../firebase";
 
-const Navbar = () => {
+const Navbar = ({ active }) => {
+  const [activeLink, setActiveLink] = useState(active);
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    signOut(auth);
+    navigate("/");
+  };
   return (
     <div className="flex justify-between m-6 mb-0  text-sm">
       <div className="grid grid-cols-3 divide-x-2 place-items-center">
-        <Link to="/home" className="p-2 font-bold">
+        <Link
+          to="/home"
+          className={`p-2 ${activeLink === "home" ? "font-bold" : ""}`}
+          onClick={() => setActiveLink("home")}
+        >
           StudyBuddy
         </Link>
-        <Link to="/profile" className="p-2 pl-4">
+        <Link
+          to="/profile"
+          className={`p-2 pl-4 ${activeLink === "profile" ? "font-bold" : ""}`}
+          onClick={() => setActiveLink("profile")}
+        >
           My Profile
         </Link>
-        <Link to="/connect" className="p-2 pl-4">
+        <Link
+          to="/connect"
+          className={`p-2 pl-4 ${activeLink === "connect" ? "font-bold" : ""}`}
+          onClick={() => setActiveLink("connect")}
+        >
           Connect Me
         </Link>
       </div>
       <div className="pt-2">
-        <a href="#" className="p-2">
+        <button className="p-2" onClick={handleSignOut}>
           Sign Out
-        </a>
+        </button>
+        {/* to="/signin" */}
       </div>
     </div>
   );
