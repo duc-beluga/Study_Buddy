@@ -6,6 +6,7 @@ import { auth } from "../firebase";
 const SignIn = () => {
   const [err, setErr] = useState(null);
   const navigate = useNavigate();
+  const [found, setFound] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const email = e.target[0].value;
@@ -15,8 +16,14 @@ const SignIn = () => {
       navigate("/home");
     } catch (err) {
       setErr(err.message);
+      setTimeout(() => {
+        return setFound(false)
+      }, 3000);
+      setFound(true);
     }
   };
+
+
   return (
     <div className="flex h-screen justify-center items-center ">
       <div className="space-y-2">
@@ -33,7 +40,7 @@ const SignIn = () => {
           />
 
           <button className="bg-blue-500 rounded-md text-white">Sign in</button>
-          {err && <span>Something went wrong {err} </span>}
+          {/* {err && <span>Something went wrong {err} </span>} */}
         </form>
         <Link
           to="/signup"
@@ -41,6 +48,7 @@ const SignIn = () => {
         >
           Sign Up
         </Link>
+        {found ? <div>Please make a new account.</div> : null}
       </div>
     </div>
   );

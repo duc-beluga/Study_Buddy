@@ -6,6 +6,7 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 
 const SignIn = () => {
+  const [short, setShort] = useState(false);
   const [err, setError] = useState(null);
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
@@ -46,6 +47,11 @@ const SignIn = () => {
       );
     } catch (e) {
       setError(e.message);
+      setTimeout(() => {
+        return setShort(false)
+      }, 1500);
+      setShort(true);
+
     }
   };
 
@@ -71,7 +77,7 @@ const SignIn = () => {
 
           <input type="file" />
           <button className="bg-blue-500 rounded-md text-white">Sign up</button>
-          {err && <span>Something went wrong {err} </span>}
+          {/* {err && <span>Something went wrong {err} </span>} */}
         </form>
         <Link
           to="/signin"
@@ -79,6 +85,7 @@ const SignIn = () => {
         >
           Login
         </Link>
+        {short ? <div>Password must be atleast 6 characters.</div> : null}
       </div>
     </div>
   );
