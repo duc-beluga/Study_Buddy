@@ -27,7 +27,7 @@ const getUsers = async (req, res, next) => {
 // route GET /api/userss/:id
 const getUser = async (req, res, next) => {
   try{
-    console.log('-------------------------ENTERING getUsers middleware-----------------------------');
+    console.log('-------------------------ENTERING getUser middleware-----------------------------');
     const users_id = req.params.id;
     const user = await Users.findById(users_id);
     if (!user) {
