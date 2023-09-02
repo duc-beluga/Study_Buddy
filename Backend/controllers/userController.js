@@ -78,19 +78,29 @@ const createUser = async (req, res, next) => {
   }
 };
 
-// // @desc delete a users
-// //route DELETE /api/users/:id
-// const deleteUser = asyncHandler(async (req, res) => {
-//   console.log('-------------------------ENTERING getUsers middleware-----------------------------');
-//   const users_id = req.params.id;
-//   const users = await Users.findById(users_id);
-//   if (!users) {
-//     res.status(404);
-//     throw new Error("users not found");
-//   }
-//   await users.deleteOne({ _id: req.params.id });
-//   res.status(200).json(users);
-// });
+// @desc delete a users
+//route DELETE /api/users/:id
+const deleteUser = asyncHandler(async (req, res) => {
+  try {
+
+    console.log('-------------------------ENTERING deleteUser middleware-----------------------------');
+    const users_id = req.params.id;
+    const users = await Users.findById(users_id);
+    if (!users) {
+      res.status(404).send("User not found");
+    }
+    await users.deleteOne({ _id: req.params.id });
+    res.status(200).json(users);
+    return next();
+  }
+  catch (error) {
+    return next({
+      log: 'Express error handler caught deleteUser middleware error',
+      status: 500,
+      message: { err: error },
+    });
+  }
+});
 
 // @desc update a users
 //route UPDATE /api/users/:id
@@ -113,12 +123,12 @@ const updateUser = async (req, res, next) => {
     res.status(200).json(updatedUser);
     return next();
   }
-  catch(error){
+  catch (error) {
     return next({
       log: 'Express error handler caught updateUser middleware error',
       status: 500,
       message: { err: error },
-    })
+    });
   }
 };
 
@@ -126,6 +136,6 @@ module.exports = {
   getUsers,
   createUser,
   getUser,
-  // deleteUser,
+  deleteUser,
   updateUser,
 };
