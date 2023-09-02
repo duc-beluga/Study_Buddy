@@ -1,33 +1,38 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import Navbar from "./components/Navbar";
+import MyProfile from "./pages/MyProfile";
+import "./index.css";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <div className="">
+      {/* <Navbar />
+      <div className="flex flex-col justify-center items-center">
+        <div className="font-semibold text-2xl mt-8 p-2">
+          Welcome to StudyBuddy
+        </div>
+        <div className="p-2"> this is a mission statement</div>
+        <div className="p-2"> of words and words and words</div>
+        <button className="bg-blue-500 rounded-md  shadow-lg p-2 text-white mt-3">
+          Get started
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+        <hr className="w-96 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700" />
+        <div className="text-sm flex flex-col justify-center items-center">
+          <p className="text-gray-500 dark:text-gray-400">
+            Sign up for an account and make your profile
+          </p>
+          <p className="text-gray-500 dark:text-gray-400">
+            Including what subjects you'd like to receive help or tutor in.
+          </p>
+          <p className="text-gray-500 dark:text-gray-400">
+            Look at tutors or students near you.
+          </p>
+        </div>
+      </div> */}
+      <MyProfile />
+    </div>
   );
 }
 
