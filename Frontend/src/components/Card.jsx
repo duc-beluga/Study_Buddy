@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import profilePath from "../assets/profile.svg";
 
 const Card = () => {
+  const [name, setName] = useState('');
+  
   return (
     <div className="w-44 h-80 flex flex-col justify-between items-center rounded-md bg-gray-400 p-4">
       <div>
@@ -15,6 +17,7 @@ const Card = () => {
       <div>Location</div>
       <div>Level</div>
       <div>Subject</div>
+      <button>Chat with me!</button>
     </div>
   );
 };

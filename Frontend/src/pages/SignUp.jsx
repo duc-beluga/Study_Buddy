@@ -40,11 +40,10 @@ const SignIn = () => {
               photoURL: downloadURL,
             });
             await setDoc(doc(db, "userChats", res.user.uid), {});
-
-            navigate("/home");
           });
         }
       );
+      navigate("/home");
     } catch (e) {
       setError(e.message);
       setTimeout(() => {
