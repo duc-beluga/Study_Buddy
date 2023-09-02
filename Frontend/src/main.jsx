@@ -9,6 +9,7 @@ import SignUp from "./pages/SignUp.jsx";
 import SignIn from "./pages/SignIn.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AuthContextProvider } from "./context/AuthContext.jsx";
+import { RoleContextProvider } from "./context/RoleContext.jsx";
 
 const router = createBrowserRouter([
   { path: "/", element: <Role /> },
@@ -20,9 +21,11 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <AuthContextProvider>
-    <React.StrictMode>
-      <RouterProvider router={router} />
-    </React.StrictMode>
-  </AuthContextProvider>
+  <RoleContextProvider>
+    <AuthContextProvider>
+      <React.StrictMode>
+        <RouterProvider router={router} />
+      </React.StrictMode>
+    </AuthContextProvider>
+  </RoleContextProvider>
 );
