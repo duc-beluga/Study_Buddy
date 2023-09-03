@@ -9,7 +9,7 @@ const userSchema = mongoose.Schema(
     email: {
       type: String,
       required: true,
-      unique: true
+      unique: true,
     },
     phoneNumber: {
       type: Number,
@@ -31,22 +31,27 @@ const userSchema = mongoose.Schema(
       type: String,
       required: false,
     },
-    zipCode: {
-      type: Number,
-      required: false,
-    },
     subject: {
       type: String,
       required: false,
     },
     accountType: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
+    location: {
+      coordinates: {
+        type: [Number], // Array of [longitude, latitude]
+        required: true,
+      },
+    },
   },
   {
     timestamps: true,
   }
 );
+
+// Create a geospatial index on the "location.coordinates" field --> easy to lookup
+userSchema.index({ "location.coordinates": "2dsphere" });
 
 module.exports = mongoose.model("Users", userSchema);
