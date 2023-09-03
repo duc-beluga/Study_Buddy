@@ -1,7 +1,9 @@
 const Users = require("../models/userModel");
 
+
 const searchNearby = async (req, res, next) => {
   try {
+    const radius = req.query.radius;
     const userId = req.params.id;
     const user = await Users.findById(userId);
 
@@ -10,7 +12,7 @@ const searchNearby = async (req, res, next) => {
     }
 
     // Define a maximum distance in kilometers within which to search for nearby users
-    const maxDistanceKm = 30; // Change this to your desired radius in kilometers
+    const maxDistanceKm = radius; // Change this to your desired radius in kilometers
 
     // Convert kilometers to meters
     const maxDistanceMeters = maxDistanceKm * 1000;

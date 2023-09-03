@@ -2,12 +2,14 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { AuthContext } from "../context/AuthContext";
 import { RoleContext } from "../context/RoleContext";
+import { IdContext } from "../context/IdContext";
 import axios from "axios";
+import AddressAutocomplete from "../components/AddressAutocomplete";
 
 const MyProfile = () => {
   const currentUser = useContext(AuthContext);
   const { role } = useContext(RoleContext);
-
+  const { setId } = useContext(IdContext);
   const [userInfo, setUserInfo] = useState({
     displayName: "", //
     phoneNumber: "", //
@@ -16,10 +18,11 @@ const MyProfile = () => {
     school: "", //Number
     level: "", //
     year: "", //
-    zipCode: "", //
     subject: "", //
     accountType: "", //Number
   });
+  const [lati, setLati] = useState(0);
+  const [long, setLong] = useState(0);
 
   useEffect(() => {
     setUserInfo((prev) => ({
@@ -34,9 +37,15 @@ const MyProfile = () => {
   const handleProfileSubmit = async (e) => {
     e.preventDefault();
     try {
+      const requestBody = {
+        ...userInfo,
+        location: {
+          coordinates: [long, lati], // Make sure it's in the order: [longitude, latitude]
+        },
+      };
       axios
-        .post("http://localhost:5001/api/users", userInfo)
-        .then((res) => console.log(res));
+        .post("http://localhost:5001/api/users", requestBody)
+        .then((res) => setId(res.data._id));
     } catch (e) {
       console.log(e.message);
     }
@@ -168,7 +177,7 @@ const MyProfile = () => {
                 />
               </div>
               <div className="flex justify-between pr-10">
-                <label htmlFor="">Zip Code </label>
+                {/* <label htmlFor="">Zip Code </label>
                 <input
                   type="text"
                   className="rounded-md bg-slate-200 focus:outline-none p-1 pl-2"
@@ -179,7 +188,8 @@ const MyProfile = () => {
                       zipCode: e.target.value,
                     }))
                   }
-                />
+                /> */}
+                <AddressAutocomplete setLati={setLati} setLong={setLong} />
               </div>
             </div>
             <div className="flex justify-end font-bold m-8 mr-20">

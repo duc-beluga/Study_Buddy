@@ -13,6 +13,7 @@ import { AuthContextProvider } from "./context/AuthContext.jsx";
 import { RoleContextProvider } from "./context/RoleContext.jsx";
 import ChatPage from "./pages/ChatPage.jsx";
 import { ChatContextProvider } from "./context/ChatContext.jsx";
+import { IdContextProvider } from "./context/IdContext.jsx";
 
 const router = createBrowserRouter([
   { path: "/", element: <Role /> },
@@ -26,12 +27,14 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <RoleContextProvider>
-    <AuthContextProvider>
-      <ChatContextProvider>
-        <React.StrictMode>
-          <RouterProvider router={router} />
-        </React.StrictMode>
-      </ChatContextProvider>
-    </AuthContextProvider>
+    <IdContextProvider>
+      <AuthContextProvider>
+        <ChatContextProvider>
+          <React.StrictMode>
+            <RouterProvider router={router} />
+          </React.StrictMode>
+        </ChatContextProvider>
+      </AuthContextProvider>
+    </IdContextProvider>
   </RoleContextProvider>
 );
