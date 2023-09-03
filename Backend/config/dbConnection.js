@@ -2,12 +2,18 @@ const mongoose = require("mongoose");
 
 const connectDb = async () => {
   try {
-    const connect = await mongoose.connect(
+    const connection = await mongoose.connect(
       "mongodb+srv://admin:hackathon1111@cluster0.komigg9.mongodb.net/"
     );
-    console.log("Database connected: ", connect.connection.host);
+
+    // Create the 2dsphere index on location.coordinates
+    await connection.connection.db.collection("users").createIndex({
+      "location.coordinates": "2dsphere",
+    });
+
+    console.log("Database connected: ", connection.connection.host);
   } catch (err) {
-    console.log(err);
+    console.error(err);
     process.exit(1);
   }
 };

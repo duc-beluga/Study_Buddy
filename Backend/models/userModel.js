@@ -13,7 +13,7 @@ const userSchema = mongoose.Schema(
     },
     phoneNumber: {
       type: Number,
-      requred: true,
+      required: true,
     },
     profilePicture: {
       type: String,
@@ -40,6 +40,11 @@ const userSchema = mongoose.Schema(
       required: true,
     },
     location: {
+      type: {
+        type: String,
+        enum: ["Point"], // Specify that it should be a Point
+        required: true,
+      },
       coordinates: {
         type: [Number], // Array of [longitude, latitude]
         required: true,

@@ -13,7 +13,7 @@ app.use(express.json());
 
 // route a given path string with its handler
 app.use("/api/users", require("./routes/userRoutes"));
-app.use("/api/search-nearby", require("./routes/searchRoutes"));
+app.use("/api/search", require("./routes/searchRoutes"));
 
 // error handler
 app.use(errorHandler);
