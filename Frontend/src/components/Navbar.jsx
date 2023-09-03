@@ -12,8 +12,8 @@ const Navbar = ({ active }) => {
     navigate("/");
   };
   return (
-    <div className="flex justify-between m-6 mb-0  text-sm">
-      <div className="grid grid-cols-3 divide-x-2 place-items-center">
+    <div className="flex justify-between m-6 mb-0 text-sm">
+      <div className="grid grid-cols-4 divide-x-2 place-items-center">
         <Link
           to="/home"
           className={`p-2 ${activeLink === "home" ? "font-bold" : ""}`}
@@ -30,10 +30,19 @@ const Navbar = ({ active }) => {
         </Link>
         <Link
           to="/connect"
-          className={`p-2 pl-4 ${activeLink === "connect" ? "font-bold" : ""}`}
+          className={`p-2 pl-4 pr-0 ${
+            activeLink === "connect" ? "font-bold" : ""
+          }`}
           onClick={() => setActiveLink("connect")}
         >
           Connect Me
+        </Link>
+        <Link
+          to="/chat"
+          className={`p-2 pl-4 ${activeLink === "chat" ? "font-bold" : ""}`}
+          onClick={() => setActiveLink("chat")}
+        >
+          Chat
         </Link>
       </div>
       <div className="pt-2">
