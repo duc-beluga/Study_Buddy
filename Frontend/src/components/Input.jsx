@@ -2,7 +2,9 @@ import React from 'react';
 
 const Input = () =>{
     return(
-        <div className="input">Input</div>
+        <div className="bg-white">
+            <input type='text' placeholder='Enter text here'></input>
+        </div>
     )
 }
 
