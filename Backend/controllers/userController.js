@@ -8,18 +8,18 @@ const Users = require("../models/userModel");
 //route GET /api/userss
 const getUsers = async (req, res, next) => {
   try {
-    console.log('-------------------------ENTERING getUsers middleware-----------------------------');
+    console.log(
+      "-------------------------ENTERING getUsers middleware-----------------------------"
+    );
     const users = await Users.find();
     res.status(200).json(users);
-    return next()
-  }
-  catch (error) {
+    return next();
+  } catch (error) {
     return next({
-      log: 'Express error handler caught getUsers middleware error',
+      log: "Express error handler caught getUsers middleware error",
       status: 500,
       message: { err: error },
-    }
-    )
+    });
   }
 };
 
@@ -27,39 +27,61 @@ const getUsers = async (req, res, next) => {
 // route GET /api/userss/:id
 const getUser = async (req, res, next) => {
   try {
-    console.log('-------------------------ENTERING getUser middleware-----------------------------');
+    console.log(
+      "-------------------------ENTERING getUser middleware-----------------------------"
+    );
     const users_id = req.params.id;
     const user = await Users.findById(users_id);
     if (!user) {
       res.status(404).send("User not found");
-    }
-    else {
+    } else {
       res.status(200).json(user);
     }
     return next();
-  }
-  catch (error) {
+  } catch (error) {
     return next({
-      log: 'Express error handler caught getUser middleware error',
+      log: "Express error handler caught getUser middleware error",
       status: 500,
       message: { err: error },
-    }
-    )
+    });
   }
-
 };
 
 // @desc create a users
 //route POST /api/users
 const createUser = async (req, res, next) => {
   try {
-    console.log('-------------------------ENTERING createUser middleware-----------------------------');
-    const { displayName, email, phoneNumber, profilePicture, school, year, level, zipCode, subject, accountType } =
-      req.body;
+    console.log(
+      "-------------------------ENTERING createUser middleware-----------------------------"
+    );
+    const {
+      displayName,
+      email,
+      phoneNumber,
+      profilePicture,
+      school,
+      year,
+      level,
+      subject,
+      accountType,
+      location: { coordinates },
+    } = req.body;
 
-    if (!displayName || !email || !phoneNumber || !school || !year || !level || !zipCode || !subject || !accountType) {
-      res.status(400).send("Missing information");
-      // throw new Error("All fields are mandatory!");
+    const [longitude, latitude] = coordinates;
+
+    if (
+      !displayName ||
+      !email ||
+      !phoneNumber ||
+      !school ||
+      !year ||
+      !level ||
+      !subject ||
+      !accountType ||
+      !latitude ||
+      !longitude
+    ) {
+      res.status(400).send("All fields are mandatory!");
     }
     const user = await Users.create(req.body);
     if (user) {
@@ -68,14 +90,12 @@ const createUser = async (req, res, next) => {
       res.status(400).send("user data is not valid");
     }
     return next();
-  }
-
-  catch (error) {
+  } catch (error) {
     return next({
       log: `Express error handler caught createUser middleware error ${error}`,
       status: 500,
       message: { err: error },
-    })
+    });
   }
 };
 
@@ -83,8 +103,9 @@ const createUser = async (req, res, next) => {
 //route DELETE /api/users/:id
 const deleteUser = asyncHandler(async (req, res) => {
   try {
-
-    console.log('-------------------------ENTERING deleteUser middleware-----------------------------');
+    console.log(
+      "-------------------------ENTERING deleteUser middleware-----------------------------"
+    );
     const users_id = req.params.id;
     const users = await Users.findById(users_id);
     if (!users) {
@@ -93,10 +114,9 @@ const deleteUser = asyncHandler(async (req, res) => {
     await users.deleteOne({ _id: req.params.id });
     res.status(200).json(users);
     return next();
-  }
-  catch (error) {
+  } catch (error) {
     return next({
-      log: 'Express error handler caught deleteUser middleware error',
+      log: "Express error handler caught deleteUser middleware error",
       status: 500,
       message: { err: error },
     });
@@ -107,26 +127,48 @@ const deleteUser = asyncHandler(async (req, res) => {
 //route UPDATE /api/users/:id
 const updateUser = async (req, res, next) => {
   try {
-    console.log('-------------------------ENTERING updateUser middleware-----------------------------');
-    const { displayName, email, phoneNumber, profilePicture, school, year, level, zipCode, subject, accountType } =
-      req.body;
-    if (!displayName || !email || !phoneNumber || !school || !year || !level || !zipCode || !subject || !accountType) {
-      res.status(400).send("All fields mandatory");
+    console.log(
+      "-------------------------ENTERING updateUser middleware-----------------------------"
+    );
+    const {
+      displayName,
+      email,
+      phoneNumber,
+      profilePicture,
+      school,
+      year,
+      level,
+      subject,
+      accountType,
+      location: { coordinates },
+    } = req.body;
+
+    const [longitude, latitude] = coordinates;
+
+    if (
+      !displayName ||
+      !email ||
+      !phoneNumber ||
+      !school ||
+      !year ||
+      !level ||
+      !subject ||
+      !accountType ||
+      !latitude ||
+      !longitude
+    ) {
+      res.status(400).send("No empty field allowed!");
     }
     const user = await Users.findById(req.params.id);
     if (!user) {
       res.status(404).send("User not found");
     }
-    const updatedUser = await Users.findByIdAndUpdate(
-      req.params.id,
-      req.body
-    );
+    const updatedUser = await Users.findByIdAndUpdate(req.params.id, req.body);
     res.status(200).json(updatedUser);
     return next();
-  }
-  catch (error) {
+  } catch (error) {
     return next({
-      log: 'Express error handler caught updateUser middleware error',
+      log: "Express error handler caught updateUser middleware error",
       status: 500,
       message: { err: error },
     });
