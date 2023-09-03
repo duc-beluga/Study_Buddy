@@ -154,20 +154,6 @@ const MyProfile = () => {
                 />
               </div>
               <div className="flex justify-between pr-10">
-                <label htmlFor="">Zip Code </label>
-                <input
-                  type="text"
-                  className="rounded-md bg-slate-200 focus:outline-none p-1 pl-2"
-                  value={userInfo.zipCode}
-                  onChange={(e) =>
-                    setUserInfo((prev) => ({
-                      ...prev,
-                      zipCode: e.target.value,
-                    }))
-                  }
-                />
-              </div>
-              <div className="flex justify-between pr-10">
                 <label htmlFor="">Subject </label>
                 <input
                   type="text"
@@ -177,6 +163,20 @@ const MyProfile = () => {
                     setUserInfo((prev) => ({
                       ...prev,
                       subject: e.target.value,
+                    }))
+                  }
+                />
+              </div>
+              <div className="flex justify-between pr-10">
+                <label htmlFor="">Zip Code </label>
+                <input
+                  type="text"
+                  className="rounded-md bg-slate-200 focus:outline-none p-1 pl-2"
+                  value={userInfo.zipCode}
+                  onChange={(e) =>
+                    setUserInfo((prev) => ({
+                      ...prev,
+                      zipCode: e.target.value,
                     }))
                   }
                 />

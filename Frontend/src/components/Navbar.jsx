@@ -38,7 +38,7 @@ const Navbar = ({ active }) => {
           Connect Me
         </Link>
         <Link
-          to="/chat"
+          to="/chats"
           className={`p-2 pl-4 ${activeLink === "chat" ? "font-bold" : ""}`}
           onClick={() => setActiveLink("chat")}
         >
