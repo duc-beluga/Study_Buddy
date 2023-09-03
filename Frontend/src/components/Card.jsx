@@ -25,7 +25,7 @@ const Card = ({ active }) => {
       <div>Level</div>
       <div>Subject</div>
       <div>
-        <button onClick={click}>Chat with me!</button>
+        <button className="" onClick={click}>Chat with me!</button>
       </div>
     </div>
 

@@ -1,8 +1,11 @@
 import React from 'react';
+import ChatNavbar from './ChatNavbar';
 
 const Sidebar = () =>{
     return(
-        <div className="sidebar">HELLO WORLD!</div>
+        <div className="flex-1 bg-indigo-700">
+            <ChatNavbar />
+        </div>
     )
 }
 
