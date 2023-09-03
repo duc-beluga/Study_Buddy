@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import profilePath from "../assets/profile.svg";
+import { Link, useNavigate } from "react-router-dom";
 
-const Card = () => {
+const Card = ({ active }) => {
+  const [name, setName] = useState('');
+  const navigate = useNavigate();
+  const click = () => {
+    const text = document.getElementById('name').textContent;
+    setName(text);
+    navigate("/chats");
+    
+  }
   return (
     <div className="w-44 h-80 flex flex-col justify-between items-center rounded-md bg-gray-400 p-4">
       <div>
@@ -11,11 +20,18 @@ const Card = () => {
           className="rounded-full scale-75"
         />
       </div>
-      <div>Name</div>
+      <div id="name">Name</div>
       <div>Location</div>
       <div>Level</div>
       <div>Subject</div>
+      <div>
+        <button className="" onClick={click}>Chat with me!</button>
+      </div>
     </div>
+
+
+
+
   );
 };
 

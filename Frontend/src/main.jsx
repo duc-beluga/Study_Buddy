@@ -11,6 +11,7 @@ import Chat from "./pages/Chat.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AuthContextProvider } from "./context/AuthContext.jsx";
 import { RoleContextProvider } from "./context/RoleContext.jsx";
+import ChatPage from "./pages/ChatPage.jsx";
 
 const router = createBrowserRouter([
   { path: "/", element: <Role /> },
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
   { path: "/connect", element: <ConnectMe /> },
   { path: "/signin", element: <SignIn /> },
   { path: "/signup", element: <SignUp /> },
-  { path: "/chat", element: <Chat /> },
+  { path: "/chats", element: <ChatPage /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
