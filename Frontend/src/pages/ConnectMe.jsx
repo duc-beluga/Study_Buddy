@@ -38,10 +38,19 @@ const ConnectMe = () => {
       <div className="m-8 mt-6">
         <div className="mb-8">Tutors near you.</div>
         <form onSubmit={handleRadius}>
-          <input type="text" value={inputValue} onChange={handleInputChange} />
+          <input
+            type="text"
+            value={inputValue}
+            onChange={handleInputChange}
+            placeholder="Enter radius..."
+            className="border-2 border-slate-400 m-3 p-1 rounded-md"
+          />
           <button>Find</button>
         </form>
         <div className="flex flex-between space-x-12">
+          {nearTutors.length === 0 && radius != 0 && (
+            <div>There is no Tutors near you</div>
+          )}
           {nearTutors.map((tutor) => (
             <Card tutor={tutor} />
           ))}
