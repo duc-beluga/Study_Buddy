@@ -6,6 +6,7 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 
 const SignIn = () => {
+  const [exists, setExists] = useState(false);
   const [short, setShort] = useState(false);
   const [err, setError] = useState(null);
   const navigate = useNavigate();
@@ -46,13 +47,24 @@ const SignIn = () => {
       navigate("/home");
     } catch (e) {
       setError(e.message);
-      setTimeout(() => {
-        return setShort(false)
-      }, 1500);
-      setShort(true);
+
+      if (e.message === "Firebase: Error (auth/email-already-in-use).") {
+        setExists(true);
+        setTimeout(() => {
+          return setExists(false)
+        }, 3000);
+      }
+      else{
+        setShort(true);
+        setTimeout(() => {
+          return setShort(false)
+        }, 3000);
+      }
 
     }
   };
+
+
 
   return (
     <div className="flex h-screen justify-center items-center ">
@@ -85,6 +97,7 @@ const SignIn = () => {
           Login
         </Link>
         {short ? <div>Password must be atleast 6 characters.</div> : null}
+        {exists ? <div>Please use a new email and password.</div> : null}
       </div>
     </div>
   );
