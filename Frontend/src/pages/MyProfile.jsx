@@ -31,8 +31,6 @@ const MyProfile = () => {
     }));
   }, []);
 
-  console.log(currentUser.displayName);
-  console.log(role);
   const handleProfileSubmit = async (e) => {
     e.preventDefault();
     try {

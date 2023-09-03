@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage.jsx";
 import Role from "./pages/Role.jsx";
 import SignUp from "./pages/SignUp.jsx";
 import SignIn from "./pages/SignIn.jsx";
+import Chat from "./pages/Chat.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AuthContextProvider } from "./context/AuthContext.jsx";
 import { RoleContextProvider } from "./context/RoleContext.jsx";
