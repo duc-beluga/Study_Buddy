@@ -14,9 +14,8 @@ Recommendations are based on physical proximity and matching subjects of tutors 
 - 🍃 [MongoDB](https://www.mongodb.com/)
 - 🔥 [Firebase](https://firebase.google.com/)
 - ⚛️ [Vite with React](https://vitejs.dev/)
+- 🌈 [TailwindCSS](https://tailwindcss.com/), [HTML/CSS](https://developer.mozilla.org/en-US/docs/Web/HTML)
 - 🎨 [Figma](https://www.figma.com/)
-- 🌈 [TailwindCSS](https://tailwindcss.com/)
-- :art: [HTML/CSS](https://developer.mozilla.org/en-US/docs/Web/HTML)
 
 ## Challenges we ran into
 One challenge we overcame was connecting all the different components of the web app. Because StudyBuddy runs on multiple tools that work together, it took time to organize the collection of files. In the end, we separated and grouped components based on what purpose they served in relation to each other. Luckily, this also proved advantageous as we were able to individually work on and update different parts of the GitHub repo with minimal interference of others' work.
@@ -26,3 +25,6 @@ Handling complex real world data, such as calculating proximity based on locatio
 
 ## What's next for StudyBuddy
 We recognize that while online chats and platforms can provide a wealth of information, there needs to be security measures to keep users safe and maintain the quality of education. StudyBuddy already hides location of users publicly but could implement having a report system for potential misconduct, review system of tutors, and having tutors pass a training module before chatting with stuednts. Additionally, future goals for StudyBuddy could also include expanding access to the online platform to other countries and globally, as not every student has the same physical access to education... but we can work to gradually change that <3
+
+## Demo
+Link: https://devpost.com/software/studybuddy-06w2ao 
